@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         txtCounter = findViewById(R.id.txtCounter)
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        mainViewModel = ViewModelProvider(this,MainViewModelFactory(5))[MainViewModel::class.java]
         setText()
     }
     private fun setText(){
