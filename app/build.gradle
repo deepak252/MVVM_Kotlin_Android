@@ -32,6 +32,9 @@ android {
                 "-Xjvm-default=all",
         ]
     }
+    buildFeatures{
+        dataBinding true
+    }
 }
 
 dependencies {
