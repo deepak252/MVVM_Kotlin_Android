@@ -23,10 +23,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initViews()
 
-        val quotes = listOf<Quote>(Quote("Hello1","world1"), Quote("Hello2","world2"))
 
-        mainViewModel = ViewModelProvider(this,MainViewModelFactory(quotes))[MainViewModel::class.java]
+        // pass applicationContext in MainViewModelFactory() as Activity 'this' may be destroyed on screen rotate
+        mainViewModel = ViewModelProvider(this,MainViewModelFactory(applicationContext))[MainViewModel::class.java]
 
+        //set initial quote
+        if(mainViewModel.hasQuotes){
+            setQuote(mainViewModel.getQuote())
+        }
 
     }
 
@@ -48,35 +52,31 @@ class MainActivity : AppCompatActivity() {
             shareQuote()
         }
     }
-    private fun updateCard(quote: Quote){
+
+    private fun setQuote(quote: Quote){
         tvQuote.text = quote.text
         tvAuthor.text = quote.author
     }
     private fun nextQuote(){
-        val quote = mainViewModel.getNextQuote()
-        if(quote!=null){
-            updateCard(quote)
-        }else{
-            Toast.makeText(this,"No more quotes!", Toast.LENGTH_SHORT).show()
+        if(mainViewModel.hasQuotes){
+            setQuote(mainViewModel.nextQuote())
         }
     }
     private fun prevQuote(){
-        val quote = mainViewModel.getPrevQuote()
-        if(quote!=null){
-            updateCard(quote)
-        }else{
-            Toast.makeText(this,"No more quotes!", Toast.LENGTH_SHORT).show()
+        if(mainViewModel.hasQuotes){
+            setQuote(mainViewModel.prevQuote())
         }
-
     }
     private fun shareQuote(){
         try {
+            //Implicit Intent
             val intent = Intent(Intent.ACTION_SEND)
             intent.type="text/plain"
-            intent.putExtra(Intent.EXTRA_TEXT,tvQuote.text.toString())
+            intent.putExtra(Intent.EXTRA_TEXT,mainViewModel.getQuote()!!.text)
             startActivity(intent)
         }catch (e : Exception){
-            Toast.makeText(this,e.message,Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,e.message,Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }
