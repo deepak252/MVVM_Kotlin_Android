@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="mainViewModel"
-            type="com.academy.mvvm.MainViewModel" />
+            name="quote"
+            type="com.academy.mvvm.Quote" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -15,25 +15,19 @@
         android:gravity="center"
         android:orientation="vertical"
         tools:context=".MainActivity">
-        <!--        Two way data binding-->
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="@={mainViewModel.nameLiveData}"
 
-            />
         <!--        One way data binding-->
         <TextView
             android:id="@+id/tvQuote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{mainViewModel.quoteLiveData.text}"
+            android:text="@{quote.text}"
             android:textSize="24sp" />
         <TextView
             android:id="@+id/tvAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{mainViewModel.nameLiveData}"
+            android:text="@{quote.author}"
             android:textSize="18sp"
             android:layout_marginVertical="8dp"
             />
@@ -44,7 +38,6 @@
             android:layout_height="wrap_content"
             android:text="Update"
             android:layout_marginTop="20dp"
-            android:onClick="@{()->mainViewModel.updateQuote()}"
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
