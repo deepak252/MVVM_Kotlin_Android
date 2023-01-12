@@ -16,6 +16,15 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            imageFromUrl="@{quote.img}"
+            tools:srcCompat="@tools:sample/avatars"
+            android:layout_margin="12dp"/>
+
         <!--        One way data binding-->
         <TextView
             android:id="@+id/tvQuote"
@@ -39,6 +48,8 @@
             android:text="Update"
             android:layout_marginTop="20dp"
             />
+
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
