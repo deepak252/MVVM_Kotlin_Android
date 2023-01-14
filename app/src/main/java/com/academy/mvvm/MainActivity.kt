@@ -17,7 +17,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tvContact = findViewById(R.id.tvContact)
-        database = Room.databaseBuilder(applicationContext, ContactDatabase::class.java,"contactDB").build()
+
+        database= ContactDatabase.getDatabase(this);
+//        database = Room.databaseBuilder(applicationContext, ContactDatabase::class.java,"contactDB").build()
 
         GlobalScope.launch {
             database.contactDao().insertContact(Contact(0,"Deepak","9999999999"))
