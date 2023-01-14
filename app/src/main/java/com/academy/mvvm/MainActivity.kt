@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 //        database = Room.databaseBuilder(applicationContext, ContactDatabase::class.java,"contactDB").build()
 
         GlobalScope.launch {
-            database.contactDao().insertContact(Contact(0,"Deepak","9999999999", Date()))
+            database.contactDao().insertContact(Contact(0,"Deepak","9999999999", Date(),0))
         }
 
     }
