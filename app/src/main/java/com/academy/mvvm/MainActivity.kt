@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.room.Room
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     lateinit var database : ContactDatabase
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 //        database = Room.databaseBuilder(applicationContext, ContactDatabase::class.java,"contactDB").build()
 
         GlobalScope.launch {
-            database.contactDao().insertContact(Contact(0,"Deepak","9999999999"))
+            database.contactDao().insertContact(Contact(0,"Deepak","9999999999", Date()))
         }
 
     }
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     fun deleteData(v: View){
 
         GlobalScope.launch {
-            database.contactDao().deleteContact(Contact(1,"Deepak","9999999999"))
+//            database.contactDao().deleteContact(Contact(1,"Deepak","9999999999"))
 //            val contacts = database.contactDao().getContact().value
 //            if(contacts!=null){
 //                for(contact in contacts){
