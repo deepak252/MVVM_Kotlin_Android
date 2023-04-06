@@ -5,27 +5,30 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import javax.inject.Named
 
 //A Hilt module is a class that is annotated with @Module. It informs Hilt how to provide instances of certain types.
 //Must annotate Hilt modules with @InstallIn to tell Hilt which Android class each module will be used or installed in.
 // Eg. ActivityComponent (for Activity),SingletonComponent (for retroFit/roomDB etc.), FragmentComponent
 @Module
 @InstallIn(ActivityComponent::class) // Because using this module in Activity
-abstract class UserModule {
-    @Binds
-    abstract fun bindUserRepository(sqlRepository: SQLRepository) : UserRepository
+class UserModule {
+//    @Binds
+//    abstract fun bindUserRepository(sqlRepository: SQLRepository) : UserRepository
 
 //    Tell Hilt how to provide instances of this(UserRepository) type by creating a function inside a Hilt module and annotating that function with @Provides.
-//    @Provides
-//    fun providesUserRepository2() : UserRepository{
-//        return FirebaseRepository()
-//    }
+    @Provides
+    @Named("firebase")
+    fun providesFirebaseRepository() : UserRepository{
+        return FirebaseRepository()
+    }
 //    @Provides
 //    fun providesUserRepository2() : UserRepository{
 //        return SQLRepository()
 //    }
-//    @Provides
-//    fun providesUserRepository2(sqlRepository: SQLRepository ) : UserRepository{
-//        return sqlRepository
-//    }
+    @Provides
+    @Named("sql")
+    fun providesSQLRepository(sqlRepository: SQLRepository ) : UserRepository{
+        return sqlRepository
+    }
 }

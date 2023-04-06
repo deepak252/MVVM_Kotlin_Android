@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import javax.inject.Named
 
 //Hilt can provide dependencies to other Android classes that have the @AndroidEntryPoint annotation
 // Supported Classes - (Application, Activity, Fragment, ViewModel, View, Service, BroadcastReceiver)
@@ -12,6 +13,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     //Field Injection
     @Inject // Initializes the userRepository (handled by Hilt)
+    @Named("sql")
     lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
