@@ -9,11 +9,11 @@ import javax.inject.Inject
 @HiltAndroidApp
 class UserApplication : Application() {
     //Field Injection
-    @Inject  // Initializes the userRepository (handled by Hilt)
-    lateinit var userRepository: UserRepository
-    override fun onCreate() {
-        super.onCreate()
-        userRepository.saveUser("deepak@gmail.com","1234")
-        Log.d("MyTag", "UserApplication : $userRepository")
-    }
+//    @Inject  // Initializes the userRepository (handled by Hilt)
+//    lateinit var userRepository: UserRepository
+//    override fun onCreate() {
+//        super.onCreate()
+//        userRepository.saveUser("deepak@gmail.com","1234")
+//        Log.d("MyTag", "UserApplication : $userRepository")
+//    }
 }

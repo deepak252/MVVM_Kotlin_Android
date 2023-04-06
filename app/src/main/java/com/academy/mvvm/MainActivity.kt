@@ -20,5 +20,6 @@ class MainActivity : AppCompatActivity() {
 
         userRepository.saveUser("deepak2@gmail.com","1235")
         Log.d("MyTag", "MainActivity : $userRepository")
+
     }
 }
