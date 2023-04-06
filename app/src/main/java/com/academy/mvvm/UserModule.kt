@@ -1,5 +1,6 @@
 package com.academy.mvvm
 
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,12 +11,15 @@ import dagger.hilt.android.components.ActivityComponent
 // Eg. ActivityComponent (for Activity),SingletonComponent (for retroFit/roomDB etc.), FragmentComponent
 @Module
 @InstallIn(ActivityComponent::class) // Because using this module in Activity
-class UserModule {
+abstract class UserModule {
+    @Binds
+    abstract fun bindUserRepository(sqlRepository: SQLRepository) : UserRepository
+
 //    Tell Hilt how to provide instances of this(UserRepository) type by creating a function inside a Hilt module and annotating that function with @Provides.
-    @Provides
-    fun providesUserRepository2() : UserRepository{
-        return FirebaseRepository()
-    }
+//    @Provides
+//    fun providesUserRepository2() : UserRepository{
+//        return FirebaseRepository()
+//    }
 //    @Provides
 //    fun providesUserRepository2() : UserRepository{
 //        return SQLRepository()
