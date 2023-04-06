@@ -14,6 +14,14 @@ class UserModule {
 //    Tell Hilt how to provide instances of this(UserRepository) type by creating a function inside a Hilt module and annotating that function with @Provides.
     @Provides
     fun providesUserRepository2() : UserRepository{
-        return SQLRepository()
+        return FirebaseRepository()
     }
+//    @Provides
+//    fun providesUserRepository2() : UserRepository{
+//        return SQLRepository()
+//    }
+//    @Provides
+//    fun providesUserRepository2(sqlRepository: SQLRepository ) : UserRepository{
+//        return sqlRepository
+//    }
 }
